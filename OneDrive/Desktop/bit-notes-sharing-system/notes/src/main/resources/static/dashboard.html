@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIT Notes Sharing System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <main class="page">
+        <section class="hero">
+            <p class="eyebrow">BIT Campus Hub</p>
+            <h1>Notes Sharing System</h1>
+            <p class="subtitle">Upload semester-wise PDFs and find notes subject-wise quickly.</p>
+            <div class="auth-meta">
+                <span id="userEmail" class="user-chip"></span>
+                <button class="btn mini" type="button" onclick="logout()">Logout</button>
+            </div>
+        </section>
+        <p id="globalStatus" class="status-banner" role="status" aria-live="polite"></p>
+
+        <section class="card">
+            <h2>1. Select Academic Session</h2>
+            <div class="grid two-col">
+                <label>Academic Year
+                    <select id="uploadYear"></select>
+                </label>
+                <label>Semester
+                    <select id="uploadSemester"></select>
+                </label>
+            </div>
+
+            <h3 class="subheading">Upload PDF Notes</h3>
+            <div class="grid one-col">
+                <label>Subject
+                    <select id="uploadSubject"></select>
+                </label>
+            </div>
+
+            <div class="grid two-col">
+                <label>Title
+                    <input id="pdfTitle" type="text" placeholder="Example: DBMS full notes">
+                </label>
+                <label>Choose File
+                    <input id="pdfFile" type="file" accept="application/pdf">
+                </label>
+            </div>
+
+            <div class="actions">
+                <button class="btn primary" onclick="uploadPdfNote()">Upload PDF</button>
+                <button class="btn" onclick="loadNotes()">Refresh Notes</button>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>2. Check Notes / PDF</h2>
+            <div class="grid two-col">
+                <label>Academic Year
+                    <select id="filterYear" onchange="applyFiltersAndRender()"></select>
+                </label>
+                <label>Semester
+                    <select id="filterSemester" onchange="applyFiltersAndRender()"></select>
+                </label>
+            </div>
+
+            <div class="grid two-col">
+                <label>Subject
+                    <select id="filterSubject" onchange="applyFiltersAndRender()"></select>
+                </label>
+            </div>
+
+            <p id="activeFilterText" class="status">Select filters to view notes.</p>
+
+            <div class="result-grid">
+                <article class="result-box">
+                    <h3>PDF Notes</h3>
+                    <ul id="notesPdfList" class="item-list"></ul>
+                </article>
+
+                <article class="result-box">
+                    <h3>Question Papers</h3>
+                    <ul id="questionPdfList" class="item-list"></ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
